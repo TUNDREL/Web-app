@@ -1,48 +1,9 @@
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
+import PhoneDemo from "@/components/PhoneDemo";
+import RevenueCalculator from "@/components/RevenueCalculator";
 
-const features = [
-  { n: "01", title: "Everything in view", text: "See projects, priorities and progress without stitching together five different tools." },
-  { n: "02", title: "Built for momentum", text: "A calm, opinionated workspace that keeps your team moving from idea to delivery." },
-  { n: "03", title: "Clear by default", text: "Make ownership, decisions and the next best action obvious to everyone." },
-];
+const steps = [["01","We connect your number","Keep your existing business line. Missed and after-hours calls route to your Tundrel assistant."],["02","It answers like your best dispatcher","Your assistant learns your services, service area, availability, pricing rules and escalation process."],["03","You wake up to booked work","Qualified calls become appointments, urgent jobs are escalated, and every conversation is summarized."]];
 
-export default function LandingPage() {
-  return (
-    <main className="landing">
-      <nav className="public-nav shell">
-        <Link href="/" className="brand"><span className="brand-mark">T</span>TUNDREL</Link>
-        <div className="nav-links"><a href="#product">Product</a><a href="#principles">Principles</a><a href="#contact">Contact</a></div>
-        <Link href="/dashboard" className="button button-dark">Open workspace <span>↗</span></Link>
-      </nav>
-
-      <section className="hero shell">
-        <div className="eyebrow"><span className="pulse" /> A new way to work together</div>
-        <h1>Build what matters.<br /><em>Without the noise.</em></h1>
-        <p className="hero-copy">Tundrel brings your team&apos;s work, thinking and momentum into one beautifully focused workspace.</p>
-        <div className="hero-actions">
-          <Link href="/dashboard" className="button button-accent">Explore the workspace <span>→</span></Link>
-          <a href="#product" className="text-link">See how it works <span>↓</span></a>
-        </div>
-        <div className="hero-board" id="product">
-          <div className="board-top"><span className="brand-mark small">T</span><span>Product launch</span><span className="board-status">On track</span></div>
-          <div className="board-grid">
-            <div className="mock-sidebar"><b>Overview</b><span>Projects</span><span>Tasks</span><span>Calendar</span><i /></div>
-            <div className="mock-main">
-              <div className="mock-heading"><div><small>GOOD MORNING, MARCO</small><h3>Here&apos;s what&apos;s moving.</h3></div><button>+ New project</button></div>
-              <div className="mock-stats"><article><small>ACTIVE PROJECTS</small><strong>08</strong><span>↗ 2 this month</span></article><article><small>TEAM VELOCITY</small><strong>84%</strong><span>↗ 12% this week</span></article><article className="accent-card"><small>NEXT MILESTONE</small><strong>06d</strong><span>Product beta</span></article></div>
-              <div className="mock-project"><div><span className="project-icon">S</span><div><b>Summer release</b><small>Design & engineering</small></div></div><span>72%</span><i><b /></i></div>
-              <div className="mock-project"><div><span className="project-icon purple">B</span><div><b>Brand system</b><small>Creative</small></div></div><span>48%</span><i><b className="half" /></i></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="principles shell" id="principles">
-        <div><span className="section-label">THE TUNDREL WAY</span><h2>Less managing.<br />More making.</h2></div>
-        <div className="feature-list">{features.map((f) => <article key={f.n}><span>{f.n}</span><div><h3>{f.title}</h3><p>{f.text}</p></div></article>)}</div>
-      </section>
-
-      <footer id="contact" className="shell"><div className="brand"><span className="brand-mark">T</span>TUNDREL</div><p>Built for teams with somewhere to go.</p><span>© 2026 Tundrel</span></footer>
-    </main>
-  );
-}
+export default function Home() { return <main><div className="announcement"><span>Built for HVAC companies that are done losing calls</span><a href="#live-demo">Call the live demo →</a></div><div className="page-shell"><SiteHeader/><section className="hvac-hero"><div className="hero-copy-block"><span className="eyebrow"><i/> YOUR 24/7 AI RECEPTIONIST</span><h1>The job you miss<br/>becomes <em>their job.</em></h1><p>Tundrel answers every call, qualifies the homeowner and books the job—so your trucks stay full even when your team can&apos;t pick up.</p><div className="hero-ctas"><Link className="button button-accent" href="/book-demo">Book a 15-minute demo <span>→</span></Link><a href="#live-demo" className="button button-outline">Call the AI now <span>↓</span></a></div><div className="trust-line"><span>✓ Works with your current number</span><span>✓ Live in days, not months</span><span>✓ Built for HVAC</span></div></div><div className="call-visual"><div className="call-window"><div className="call-head"><span className="brand-mark">T</span><div><b>Tundrel AI</b><small>Answering for Summit Heating</small></div><i>LIVE</i></div><div className="wave"><span/><span/><span/><span/><span/><span/><span/><span/><span/></div><div className="transcript"><p><i>AI</i><span>Thanks for calling Summit Heating. How can I help today?</span></p><p className="customer"><i>J</i><span>Our AC stopped working and it&apos;s getting hot fast.</span></p><p><i>AI</i><span>I&apos;m sorry about that, James. I can get an emergency technician out between 2 and 4 PM...</span></p></div><div className="call-status"><span><i/> Call in progress</span><b>01:42</b></div></div><div className="booking-toast"><span>✓</span><div><b>Emergency repair booked</b><small>Today · 2:00–4:00 PM · $149 callout</small></div></div></div></section></div><div id="live-demo"><PhoneDemo/></div><section className="how-preview page-shell"><div className="section-head"><div><span className="eyebrow">FROM RING TO REVENUE</span><h2>Every call handled.<br/>Nothing falls through.</h2></div><p>We don&apos;t give you another dashboard to manage. We give you a receptionist that never clocks out.</p></div><div className="steps">{steps.map(([n,title,text])=><article key={n}><span>{n}</span><div className="step-icon">{n === "01" ? "↳" : n === "02" ? "◉" : "✓"}</div><h3>{title}</h3><p>{text}</p></article>)}</div><Link href="/how-it-works" className="text-arrow">See exactly how it works <span>→</span></Link></section><RevenueCalculator/><section className="pricing-preview page-shell"><div><span className="eyebrow">SIMPLE PRICING</span><h2>Cheaper than one<br/><em>missed install.</em></h2><p>Start small. Upgrade when the call volume proves it.</p><Link href="/pricing" className="text-arrow">Compare every plan <span>→</span></Link></div><article><span>STARTER</span><div className="price"><strong>$299</strong><small>/ month</small></div><p>For owner-operators who need every after-hours call covered.</p><ul><li>150 AI-handled minutes</li><li>Lead qualification & summaries</li><li>After-hours and overflow coverage</li></ul><Link href="/book-demo" className="button button-accent">Book a demo <span>→</span></Link></article></section><section className="final-cta"><span className="eyebrow">YOUR NEXT CALL IS AN OPPORTUNITY</span><h2>Stop sending good jobs<br/>to voicemail.</h2><p>See how Tundrel would answer your real calls in a focused 15-minute walkthrough.</p><div><Link className="button button-accent" href="/book-demo">Book your demo <span>→</span></Link><a className="button button-light" href="#live-demo">Call the AI first</a></div></section><SiteFooter/></main>; }

@@ -17,7 +17,7 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "599",
+    price: "499",
     desc: "For busy shops ready to book more work around the clock.",
     minutes: "500 AI minutes",
     popular: true,
@@ -32,7 +32,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "999",
+    price: "699",
     desc: "For multi-location teams with higher volume and complexity.",
     minutes: "1,200 AI minutes",
     features: [
@@ -126,3 +126,4 @@ export default function Pricing() {
     </main>
   );
 }
+

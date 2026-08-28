@@ -27,7 +27,6 @@ export default function Home() {
     <main>
       <div className="announcement">
         <span>Built for HVAC companies that are done losing calls</span>
-        <a href="#live-demo">Call the live demo →</a>
       </div>
       <div className="page-shell">
         <SiteHeader />

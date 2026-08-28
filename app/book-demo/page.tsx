@@ -39,8 +39,8 @@ export default function BookDemo() {
               <li>
                 <span>03</span>
                 <div>
-                  <b>A clear pilot recommendation</b>
-                  <small>Scope, timeline and cost based on your volume.</small>
+                  <b>A free 1-week trial</b>
+                  <small>See it handle real calls before you pay a cent.</small>
                 </div>
               </li>
             </ul>

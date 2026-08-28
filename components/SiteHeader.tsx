@@ -13,9 +13,6 @@ export default function SiteHeader() {
         <Link href="/faq">FAQ</Link>
       </nav>
       <div className="nav-actions">
-        <a className="nav-phone" href={demoPhoneHref}>
-          Try the AI <span>↗</span>
-        </a>
         <Link className="button button-dark" href="/book-demo">
           Book a demo
         </Link>

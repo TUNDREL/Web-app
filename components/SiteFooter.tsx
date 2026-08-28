@@ -24,6 +24,7 @@ export default function SiteFooter() {
         <div>
           <span>TAKE ACTION</span>
           <a href={demoPhoneHref}>Call {demoPhone}</a>
+          <a href="mailto:contact@tundrel.com">contact@tundrel.com</a>
           <Link href="/book-demo">Book a demo</Link>
         </div>
         <div>

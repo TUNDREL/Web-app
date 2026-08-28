@@ -6,10 +6,12 @@ const plans = [
     name: "Starter",
     price: "299",
     desc: "For owner-operators covering after-hours and overflow.",
-    minutes: "150 AI minutes",
+    minutes: "300 AI minutes",
+    overage: "$0.40/min after that",
     features: [
       "One phone line",
-      "Lead qualification",
+      "Lead qualification & emergency triage",
+      "Appointment booking",
       "Call summaries by text/email",
       "After-hours & overflow routing",
       "Standard voice setup",
@@ -17,17 +19,19 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "499",
+    price: "449",
     desc: "For busy shops ready to book more work around the clock.",
-    minutes: "500 AI minutes",
+    minutes: "600 AI minutes",
+    overage: "$0.35/min after that",
     popular: true,
     features: [
       "Everything in Starter",
-      "Appointment booking",
+      "Full-time call answering, not just overflow",
+      "Real calendar integration",
       "Emergency call escalation",
       "Custom service-area rules",
-      "CRM or calendar connection",
-      "Monthly optimization",
+      "Monthly performance review",
+      "Priority email support",
     ],
   },
   {
@@ -35,12 +39,13 @@ const plans = [
     price: "699",
     desc: "For multi-location teams with higher volume and complexity.",
     minutes: "1,200 AI minutes",
+    overage: "$0.30/min after that",
     features: [
       "Everything in Growth",
       "Multiple locations or lines",
       "Advanced call routing",
       "Bilingual assistant",
-      "Priority support",
+      "Dedicated priority support",
       "Custom integrations",
     ],
   },
@@ -62,6 +67,9 @@ export default function Pricing() {
             your call volume.
           </p>
         </section>
+        <div className="trial-banner">
+          <span>✦ Try any plan free for 1 week — no card required to start, no obligation after.</span>
+        </div>
         <section className="pricing-grid">
           {plans.map((plan) => (
             <article className={plan.popular ? "popular" : ""} key={plan.name}>
@@ -73,6 +81,9 @@ export default function Pricing() {
               </div>
               <p>{plan.desc}</p>
               <b className="minutes">{plan.minutes}</b>
+              <b className="minutes" style={{ fontWeight: 400, opacity: 0.75 }}>
+                {plan.overage}
+              </b>
               <ul>
                 {plan.features.map((x) => (
                   <li key={x}>✓ {x}</li>
@@ -82,15 +93,18 @@ export default function Pricing() {
                 href="/book-demo"
                 className={`button ${plan.popular ? "button-accent" : "button-dark"}`}
               >
-                Book a demo <span>→</span>
+                Start your free week <span>→</span>
               </Link>
             </article>
           ))}
         </section>
         <p className="pricing-note">
-          Need more minutes or a custom workflow?{" "}
-          <Link href="/book-demo">Let&apos;s talk.</Link> Usage overages and
-          telephony fees are confirmed during your demo.
+          Every plan starts with a free 1-week trial — see it handle real
+          calls before you pay anything. One-time setup fee of $150–$300
+          applies once you continue, confirmed during your demo based on
+          your specific configuration.{" "}
+          <Link href="/book-demo">Let&apos;s talk.</Link> Need more minutes
+          or a custom workflow? We can scope that too.
         </p>
       </div>
       <section className="pricing-assurance">
@@ -126,4 +140,3 @@ export default function Pricing() {
     </main>
   );
 }
-

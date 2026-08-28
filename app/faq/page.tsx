@@ -31,6 +31,10 @@ const faqs = [
     "Most straightforward pilots can be configured and tested within several business days after we receive your services, hours, service areas and booking rules.",
   ],
   [
+    "Can I try it before committing to anything?",
+    "Yes. Every plan starts with a free 1-week trial once your assistant is configured—no card required to start, and no obligation to continue afterward. If it's working, you pick a plan; if it's not a fit, you walk away with no cost.",
+  ],
+  [
     "Is our customer data secure?",
     "We limit collection to what is needed to handle the call and use service providers appropriate to the workflow. We cover retention, access and deletion expectations during onboarding.",
   ],

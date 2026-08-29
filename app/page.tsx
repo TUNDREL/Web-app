@@ -1,8 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import PhoneDemo from "@/components/PhoneDemo";
 import RevenueCalculator from "@/components/RevenueCalculator";
+
+export const metadata: Metadata = {
+  title: "AI Answering Service for HVAC Companies | Tundrel Call Agent",
+  description:
+    "Stop losing jobs to missed calls. Tundrel is an AI receptionist built for HVAC companies — it answers 24/7, qualifies callers, and books the job. Try it free for a week.",
+};
 
 const steps = [
   [

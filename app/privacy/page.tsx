@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Tundrel Call Agent",
+  description:
+    "How Tundrel collects, uses, and protects call and business data for HVAC companies using the AI receptionist service.",
+};
 export default function Privacy() {
   return (
     <main>

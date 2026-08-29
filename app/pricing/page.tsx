@@ -1,6 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+
+export const metadata: Metadata = {
+  title: "Pricing | AI Receptionist for HVAC Companies — Tundrel",
+  description:
+    "Simple, predictable pricing for HVAC call answering. Plans from $299/month with a free 1-week trial — no card required, no obligation.",
+};
 const plans = [
   {
     name: "Starter",

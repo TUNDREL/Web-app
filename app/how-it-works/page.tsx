@@ -1,7 +1,14 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import PhoneDemo from "@/components/PhoneDemo";
+
+export const metadata: Metadata = {
+  title: "How It Works | AI Call Answering for HVAC — Tundrel",
+  description:
+    "See how Tundrel's AI receptionist answers, qualifies, and books HVAC calls 24/7 — set up in days, not months, without changing your business number.",
+};
 export default function HowItWorks() {
   return (
     <main>

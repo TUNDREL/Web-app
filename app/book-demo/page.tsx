@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import LeadForm from "@/components/LeadForm";
 import { demoPhone, demoPhoneHref } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Book a Demo | AI Receptionist for HVAC Companies — Tundrel",
+  description:
+    "See a live, unscripted demo of the AI that answers your HVAC company's calls, then start a free 1-week trial — no card required, no hard sell.",
+};
 
 export default function BookDemo() {
   return (

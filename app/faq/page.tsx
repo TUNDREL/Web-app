@@ -1,6 +1,14 @@
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FAQ | AI Answering Service for HVAC Companies — Tundrel",
+  description:
+    "Answers to common questions about Tundrel's AI receptionist for HVAC companies — setup, pricing, data security, and how the free trial works.",
+};
+
 const faqs = [
   [
     "Does this replace my office staff?",
@@ -39,9 +47,31 @@ const faqs = [
     "We limit collection to what is needed to handle the call and use service providers appropriate to the workflow. We cover retention, access and deletion expectations during onboarding.",
   ],
 ];
+
+// FAQPage structured data (JSON-LD) — this is what lets Google and AI
+// answer engines (AI Overviews, ChatGPT, Perplexity) parse these as
+// discrete question/answer pairs and cite them directly, rather than
+// just seeing a wall of unstructured text.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([question, answer]) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
+    },
+  })),
+};
+
 export default function FAQ() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="page-shell">
         <SiteHeader />
         <section className="inner-hero faq-hero">

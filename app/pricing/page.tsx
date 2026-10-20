@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const plans = [
   {
     name: "Starter",
-    price: "299",
+    price: "199",
     desc: "For owner-operators covering after-hours and overflow.",
     minutes: "300 AI minutes",
     overage: "$0.40/min after that",
@@ -26,7 +26,7 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "449",
+    price: "399",
     desc: "For busy shops ready to book more work around the clock.",
     minutes: "600 AI minutes",
     overage: "$0.35/min after that",
@@ -43,7 +43,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "699",
+    price: "599",
     desc: "For multi-location teams with higher volume and complexity.",
     minutes: "1,200 AI minutes",
     overage: "$0.30/min after that",

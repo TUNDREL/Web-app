@@ -176,7 +176,7 @@ export default function Home() {
         <article>
           <span>STARTER</span>
           <div className="price">
-            <strong>$299</strong>
+            <strong>$199</strong>
             <small>/ month</small>
           </div>
           <p>For owner-operators who need every after-hours call covered.</p>

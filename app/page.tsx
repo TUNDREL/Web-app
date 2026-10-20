@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main>
       <div className="announcement">
-        <span>Built for HVAC companies that are done losing calls</span>
+        <span>Built for home service businesses that are done losing calls</span>
       </div>
       <div className="page-shell">
         <SiteHeader />

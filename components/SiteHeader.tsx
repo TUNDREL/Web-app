@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { demoPhoneHref } from "@/lib/site";
+import { demoPhone, demoPhoneHref, phoneConfigured } from "@/lib/site";
+
+const links = [
+  ["/how-it-works", "How it works"],
+  ["/pricing", "Pricing"],
+  ["/faq", "FAQ"],
+  ["/about", "About"],
+] as const;
 
 export default function SiteHeader() {
   return (
@@ -8,14 +15,33 @@ export default function SiteHeader() {
         <span className="brand-mark">T</span>TUNDREL
       </Link>
       <nav aria-label="Main navigation">
-        <Link href="/how-it-works">How it works</Link>
-        <Link href="/pricing">Pricing</Link>
-        <Link href="/faq">FAQ</Link>
+        {links.map(([href, label]) => (
+          <Link key={href} href={href}>
+            {label}
+          </Link>
+        ))}
       </nav>
       <div className="nav-actions">
-        <Link className="button button-dark" href="/book-demo">
+        {phoneConfigured && (
+          <a className="nav-phone" href={demoPhoneHref} data-track="call-header">
+            ☎ {demoPhone}
+          </a>
+        )}
+        <Link className="button button-dark" href="/book-demo" data-track="book-demo-header">
           Book a demo
         </Link>
+        {/* No-JavaScript menu for small screens (the desktop nav is hidden there). */}
+        <details className="mobile-nav">
+          <summary aria-label="Open menu">Menu</summary>
+          <div className="mobile-nav-panel">
+            {links.map(([href, label]) => (
+              <Link key={href} href={href}>
+                {label}
+              </Link>
+            ))}
+            <Link href="/security">Security &amp; data</Link>
+          </div>
+        </details>
       </div>
     </header>
   );

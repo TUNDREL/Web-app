@@ -2,61 +2,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { plans, startingPrice } from "@/lib/plans";
+import { plansTerms } from "@/lib/content";
+import { Fill } from "@/components/Fill";
 
 export const metadata: Metadata = {
   title: "Pricing | AI Receptionist for HVAC Companies — Tundrel",
-  description:
-    "Simple, predictable pricing for HVAC call answering. Plans from $299/month with a free 1-week trial — no card required, no obligation.",
+  description: `Simple, predictable pricing for HVAC call answering. Plans from $${startingPrice}/month with a free 1-week trial — no card required, no obligation.`,
 };
-const plans = [
-  {
-    name: "Starter",
-    price: "199",
-    desc: "For owner-operators covering after-hours and overflow.",
-    minutes: "300 AI minutes",
-    overage: "$0.40/min after that",
-    features: [
-      "One phone line",
-      "Lead qualification & emergency triage",
-      "Appointment booking",
-      "Call summaries by text/email",
-      "After-hours & overflow routing",
-      "Standard voice setup",
-    ],
-  },
-  {
-    name: "Growth",
-    price: "399",
-    desc: "For busy shops ready to book more work around the clock.",
-    minutes: "600 AI minutes",
-    overage: "$0.35/min after that",
-    popular: true,
-    features: [
-      "Everything in Starter",
-      "Full-time call answering, not just overflow",
-      "Real calendar integration",
-      "Emergency call escalation",
-      "Custom service-area rules",
-      "Monthly performance review",
-      "Priority email support",
-    ],
-  },
-  {
-    name: "Pro",
-    price: "599",
-    desc: "For multi-location teams with higher volume and complexity.",
-    minutes: "1,200 AI minutes",
-    overage: "$0.30/min after that",
-    features: [
-      "Everything in Growth",
-      "Multiple locations or lines",
-      "Advanced call routing",
-      "Bilingual assistant",
-      "Dedicated priority support",
-      "Custom integrations",
-    ],
-  },
-];
+
 export default function Pricing() {
   return (
     <main>
@@ -99,6 +53,7 @@ export default function Pricing() {
               <Link
                 href="/book-demo"
                 className={`button ${plan.popular ? "button-accent" : "button-dark"}`}
+                data-track={`book-demo-plan-${plan.name.toLowerCase()}`}
               >
                 Start your free week <span>→</span>
               </Link>
@@ -113,6 +68,38 @@ export default function Pricing() {
           <Link href="/book-demo">Let&apos;s talk.</Link> Need more minutes
           or a custom workflow? We can scope that too.
         </p>
+        <section className="terms-glance" aria-labelledby="terms-glance-title">
+          <h2 id="terms-glance-title">Terms at a glance</h2>
+          <dl>
+            <div>
+              <dt>Free trial</dt>
+              <dd>1 week once your assistant is configured. No card required, no obligation.</dd>
+            </div>
+            <div>
+              <dt>Setup</dt>
+              <dd>One-time fee of $150–$300 if you continue, confirmed during your demo.</dd>
+            </div>
+            <div>
+              <dt>Contract</dt>
+              <dd><Fill>{plansTerms.contract}</Fill></dd>
+            </div>
+            <div>
+              <dt>Billing</dt>
+              <dd><Fill>{plansTerms.billing}</Fill></dd>
+            </div>
+            <div>
+              <dt>Cancellation</dt>
+              <dd><Fill>{plansTerms.cancellation}</Fill></dd>
+            </div>
+            <div>
+              <dt>Refunds</dt>
+              <dd><Fill>{plansTerms.refunds}</Fill></dd>
+            </div>
+          </dl>
+          <p>
+            Full details in our <Link href="/terms">Terms of service</Link>.
+          </p>
+        </section>
       </div>
       <section className="pricing-assurance">
         <div>

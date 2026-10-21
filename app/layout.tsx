@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import StickyCallBar from "@/components/StickyCallBar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tundrel.com"),
@@ -36,7 +37,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <StickyCallBar />
+      </body>
     </html>
   );
 }

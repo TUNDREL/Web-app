@@ -87,7 +87,7 @@ export default function LeadForm() {
   if (status === "success") {
     return (
       <div className="lead-form-success">
-        <h3>Thanks — you're on the list.</h3>
+        <h3>Thanks — you&apos;re on the list.</h3>
         <p>
           A member of our team will reach out within one business day to set
           up your 15-minute demo call. Check your inbox for a confirmation

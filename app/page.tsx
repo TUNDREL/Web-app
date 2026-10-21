@@ -4,11 +4,20 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import PhoneDemo from "@/components/PhoneDemo";
 import RevenueCalculator from "@/components/RevenueCalculator";
+import HearItWork from "@/components/HearItWork";
+import EmergencySection from "@/components/EmergencySection";
+import WorksWith from "@/components/WorksWith";
+import Proof from "@/components/Proof";
+import FounderBlock from "@/components/FounderBlock";
+import { faqs } from "@/lib/faqs";
+import { plans } from "@/lib/plans";
+import { showEmergencySection } from "@/lib/content";
+import { Fill } from "@/components/Fill";
 
 export const metadata: Metadata = {
   title: "AI Answering Service for HVAC Companies | Tundrel Call Agent",
   description:
-    "Stop losing jobs to missed calls. Tundrel is an AI receptionist built for HVAC companies — it answers 24/7, qualifies callers, and books the job. Try it free for a week.",
+    "Stop losing jobs to missed calls. Tundrel is an AI receptionist built for HVAC companies — it answers 24/7, qualifies callers, and gets the job details to you. Try it free for a week.",
 };
 
 const steps = [
@@ -24,10 +33,16 @@ const steps = [
   ],
   [
     "03",
-    "You wake up to booked work",
-    "Qualified calls become appointments, urgent jobs are escalated, and every conversation is summarized.",
+    "You wake up to qualified jobs",
+    "Qualified calls become appointment requests or calendar bookings, urgent jobs are escalated, and every conversation is summarized.",
   ],
 ];
+
+const homeFaqs = faqs.filter(
+  (f) => f.featured && (f.requires !== "emergency" || showEmergencySection),
+);
+const starter = plans[0];
+const others = plans.slice(1);
 
 export default function Home() {
   return (
@@ -48,22 +63,22 @@ export default function Home() {
               becomes <em>their job.</em>
             </h1>
             <p>
-              Tundrel answers every call, qualifies the homeowner and books the
-              job—so your trucks stay full even when your team can&apos;t pick
-              up.
+              Tundrel answers every call, finds out what&apos;s wrong and sends
+              you the job details—so your trucks stay full even when your team
+              can&apos;t pick up.
             </p>
             <div className="hero-ctas">
-              <Link className="button button-accent" href="/book-demo">
+              <Link className="button button-accent" href="/book-demo" data-track="book-demo-hero">
                 Book a 15-minute demo <span>→</span>
               </Link>
-              <a href="#live-demo" className="button button-outline">
+              <a href="#live-demo" className="button button-outline" data-track="call-demo-hero">
                 Call the AI now <span>↓</span>
               </a>
             </div>
             <div className="trust-line">
               <span>✓ Works with your current number</span>
               <span>✓ Live in days, not months</span>
-              <span>✓ Built for HVAC</span>
+              <span>✓ Free 1-week trial, no card</span>
             </div>
           </div>
           <div className="call-visual">
@@ -74,7 +89,7 @@ export default function Home() {
                   <b>Tundrel AI</b>
                   <small>Answering for Summit Heating</small>
                 </div>
-                <i>LIVE</i>
+                <i>SAMPLE</i>
               </div>
               <div className="wave">
                 <span />
@@ -103,23 +118,20 @@ export default function Home() {
                 <p>
                   <i>AI</i>
                   <span>
-                    I&apos;m sorry about that, James. I can get an emergency
-                    technician out between 2 and 4 PM...
+                    I&apos;m sorry about that, James. Let me get your address and
+                    send this to the on-call technician right now...
                   </span>
                 </p>
               </div>
               <div className="call-status">
-                <span>
-                  <i /> Call in progress
-                </span>
-                <b>01:42</b>
+                <span>Example conversation · Summit Heating is a sample business</span>
               </div>
             </div>
             <div className="booking-toast">
               <span>✓</span>
               <div>
-                <b>Emergency repair booked</b>
-                <small>Today · 2:00–4:00 PM · $149 callout</small>
+                <b>Urgent request sent to your team</b>
+                <small>Details and summary on their phone</small>
               </div>
             </div>
           </div>
@@ -128,6 +140,8 @@ export default function Home() {
       <div id="live-demo">
         <PhoneDemo />
       </div>
+      <HearItWork />
+      <RevenueCalculator />
       <section className="how-preview page-shell">
         <div className="section-head">
           <div>
@@ -159,7 +173,8 @@ export default function Home() {
           See exactly how it works <span>→</span>
         </Link>
       </section>
-      <RevenueCalculator />
+      <EmergencySection />
+      <WorksWith />
       <section className="pricing-preview page-shell">
         <div>
           <span className="eyebrow">SIMPLE PRICING</span>
@@ -169,26 +184,61 @@ export default function Home() {
             <em>missed install.</em>
           </h2>
           <p>Start small. Upgrade when the call volume proves it.</p>
+          <p className="plan-line">
+            {others.map((p) => `${p.name} $${p.price}`).join(" · ")} / month
+          </p>
           <Link href="/pricing" className="text-arrow">
             Compare every plan <span>→</span>
           </Link>
         </div>
         <article>
-          <span>STARTER</span>
+          <span>{starter.name.toUpperCase()}</span>
           <div className="price">
-            <strong>$199</strong>
+            <strong>${starter.price}</strong>
             <small>/ month</small>
           </div>
-          <p>For owner-operators who need every after-hours call covered.</p>
+          <p>{starter.desc}</p>
           <ul>
-            <li>150 AI-handled minutes</li>
+            <li>{starter.minutes}</li>
             <li>Lead qualification & summaries</li>
             <li>After-hours and overflow coverage</li>
           </ul>
-          <Link href="/book-demo" className="button button-accent">
+          <Link href="/book-demo" className="button button-accent" data-track="book-demo-pricing">
             Book a demo <span>→</span>
           </Link>
         </article>
+      </section>
+      <Proof />
+      <FounderBlock compact />
+      <section className="faq-preview page-shell">
+        <div className="section-head">
+          <div>
+            <span className="eyebrow">STRAIGHT ANSWERS</span>
+            <h2>
+              Questions a careful owner
+              <br />
+              should ask.
+            </h2>
+          </div>
+          <p>The short answers. The full list is one click away.</p>
+        </div>
+        <div className="faq-list">
+          {homeFaqs.map((f, i) => (
+            <details key={f.q}>
+              <summary>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <b>{f.q}</b>
+                <i>＋</i>
+              </summary>
+              <p>
+                <Fill>{f.a}</Fill>
+              </p>
+            </details>
+          ))}
+        </div>
+        <Link href="/faq" className="text-arrow">
+          Read every question <span>→</span>
+        </Link>
       </section>
       <section className="final-cta">
         <span className="eyebrow">YOUR NEXT CALL IS AN OPPORTUNITY</span>
@@ -199,13 +249,13 @@ export default function Home() {
         </h2>
         <p>
           See how Tundrel would answer your real calls in a focused 15-minute
-          walkthrough.
+          walkthrough. Free 1-week trial, no card required.
         </p>
         <div>
-          <Link className="button button-accent" href="/book-demo">
+          <Link className="button button-accent" href="/book-demo" data-track="book-demo-final">
             Book your demo <span>→</span>
           </Link>
-          <a className="button button-light" href="#live-demo">
+          <a className="button button-light" href="#live-demo" data-track="call-demo-final">
             Call the AI first
           </a>
         </div>

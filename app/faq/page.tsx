@@ -2,6 +2,9 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { faqs } from "@/lib/faqs";
+import { showEmergencySection } from "@/lib/content";
+import { Fill } from "@/components/Fill";
 
 export const metadata: Metadata = {
   title: "FAQ | AI Answering Service for HVAC Companies — Tundrel",
@@ -9,53 +12,21 @@ export const metadata: Metadata = {
     "Answers to common questions about Tundrel's AI receptionist for HVAC companies — setup, pricing, data security, and how the free trial works.",
 };
 
-const faqs = [
-  [
-    "Does this replace my office staff?",
-    "No. Tundrel covers the calls your team cannot reach—after hours, overflow, lunch breaks and busy periods. Your staff stays in control and can take over whenever needed.",
-  ],
-  [
-    "What happens if the AI cannot answer something?",
-    "It follows the escalation rules you approve. It can take a message, transfer urgent calls or tell the caller exactly when a human will follow up. It never invents an answer.",
-  ],
-  [
-    "Can it book into our existing calendar?",
-    "Yes. The Growth and Pro plans can connect to supported calendars and scheduling systems so the assistant offers real availability instead of simply taking a message.",
-  ],
-  [
-    "Do we have to change our phone number?",
-    "No. You keep your existing business number. Calls can route to Tundrel after hours, when your staff does not answer, or whenever you choose.",
-  ],
-  [
-    "Will customers know it is AI?",
-    "We recommend being transparent. The assistant can introduce itself as your virtual receptionist while still sounding natural, patient and helpful.",
-  ],
-  [
-    "Are calls recorded?",
-    "Calls may be recorded for quality, training and service improvement where permitted. Your setup includes a configurable disclosure, and you remain responsible for requirements specific to your location.",
-  ],
-  [
-    "How long does setup take?",
-    "Most straightforward pilots can be configured and tested within several business days after we receive your services, hours, service areas and booking rules.",
-  ],
-  [
-    "Can I try it before committing to anything?",
-    "Yes. Every plan starts with a free 1-week trial once your assistant is configured—no card required to start, and no obligation to continue afterward. If it's working, you pick a plan; if it's not a fit, you walk away with no cost.",
-  ],
-  [
-    "Is our customer data secure?",
-    "We limit collection to what is needed to handle the call and use service providers appropriate to the workflow. We cover retention, access and deletion expectations during onboarding.",
-  ],
-];
-
 // FAQPage structured data (JSON-LD) — this is what lets Google and AI
 // answer engines (AI Overviews, ChatGPT, Perplexity) parse these as
 // discrete question/answer pairs and cite them directly, rather than
 // just seeing a wall of unstructured text.
+const visibleFaqs = faqs.filter(
+  (f) => f.requires !== "emergency" || showEmergencySection,
+);
+// Unfinished answers contain [placeholders]; keep them out of the search-engine markup.
+const hasPlaceholder = (text: string) => /\[[^\]]+\]/.test(text);
+const schemaFaqs = visibleFaqs.filter((f) => !hasPlaceholder(f.q) && !hasPlaceholder(f.a));
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map(([question, answer]) => ({
+  mainEntity: schemaFaqs.map(({ q: question, a: answer }) => ({
     "@type": "Question",
     name: question,
     acceptedAnswer: {
@@ -87,14 +58,16 @@ export default function FAQ() {
           </p>
         </section>
         <section className="faq-list">
-          {faqs.map(([q, a], i) => (
+          {visibleFaqs.map(({ q, a }, i) => (
             <details key={q} open={i === 0}>
               <summary>
                 <span>{String(i + 1).padStart(2, "0")}</span>
                 <b>{q}</b>
                 <i>＋</i>
               </summary>
-              <p>{a}</p>
+              <p>
+                <Fill>{a}</Fill>
+              </p>
             </details>
           ))}
         </section>

@@ -49,11 +49,11 @@ export default function HowItWorks() {
               <p>Your callback reaches someone who already booked.</p>
             </li>
           </ol>
-          <div className="outcome bad">− $475 average job value</div>
+          <div className="outcome bad">− The value of one lost job</div>
         </div>
         <div className="after">
           <span>WITH TUNDREL</span>
-          <h2>The same call becomes a booking.</h2>
+          <h2>The same call becomes a job.</h2>
           <ol>
             <li>
               <b>00:00</b>
@@ -65,14 +65,14 @@ export default function HowItWorks() {
             </li>
             <li>
               <b>01:22</b>
-              <p>It offers a real appointment or escalates the emergency.</p>
+              <p>It captures the appointment request, or books it into your calendar, and escalates emergencies.</p>
             </li>
             <li>
               <b>01:45</b>
-              <p>Your team receives the booking and a clear summary.</p>
+              <p>Your team receives the appointment details and a clear summary.</p>
             </li>
           </ol>
-          <div className="outcome good">+ Booked before the next ring</div>
+          <div className="outcome good">+ Captured before the next ring</div>
         </div>
       </section>
       <section className="setup-flow page-shell">
